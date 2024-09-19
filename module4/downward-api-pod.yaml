@@ -5,7 +5,8 @@ metadata:
 spec:
   containers:
     - name: test-container
-      image: nginx
+      image: nginx:1.26.2-alpine
+      imagePullPolicy: IfNotPresent
       #command: [ "/bin/sh", "-c", "env" ]
       env:
         # Define the environment variable
@@ -16,4 +17,8 @@ spec:
               name: special-config
               # Specify the key associated with the value
               key: special.how
+      resources:
+        limits:
+          memory: "32Mi"
+          cpu: "10m"
   restartPolicy: Never

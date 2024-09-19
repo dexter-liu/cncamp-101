@@ -5,11 +5,16 @@ metadata:
 spec:
   containers:
     - name: test-container
-      image: k8s.gcr.io/busybox
+      #image: k8s.gcr.io/busybox
+      image: busybox:latest
       command: [ "/bin/sh", "-c", "ls /etc/config/" ]
       volumeMounts:
       - name: config-volume
         mountPath: /etc/config
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "10m"
   volumes:
     - name: config-volume
       configMap:
